@@ -14,5 +14,8 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("net.dv8tion:JDA:4.2.0_224")
+    implementation("org.slf4j:slf4j-api:1.7.30")
+    implementation("org.slf4j:slf4j-simple:1.7.30")
     testCompile("junit", "junit", "4.12")
+
 }
