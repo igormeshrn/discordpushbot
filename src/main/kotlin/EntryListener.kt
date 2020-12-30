@@ -10,9 +10,11 @@ import net.dv8tion.jda.api.hooks.EventListener
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.hooks.VoiceDispatchInterceptor
 import net.dv8tion.jda.api.utils.data.DataObject
+import tg.TelegramDisPushBot
 import java.lang.reflect.Member
 
-class EntryListener : ListenerAdapter() {
+class EntryListener(telegramBot: TelegramDisPushBot) : ListenerAdapter() {
+    val tgBot = telegramBot
 
     override fun onGuildVoiceJoin(event: GuildVoiceJoinEvent) {
         val memberName: String = event.member.effectiveName
@@ -20,6 +22,7 @@ class EntryListener : ListenerAdapter() {
 
         onJoinMessage.setDescription("$memberName зашел в хату")
         event.jda.textChannels[0].sendMessage(onJoinMessage.build()).submit()
+        tgBot.sendMessage()
     }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {

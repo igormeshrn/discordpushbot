@@ -1,0 +1,12 @@
+# Default ignored files
+/build/
+/.idea/
+/.gradle/
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
