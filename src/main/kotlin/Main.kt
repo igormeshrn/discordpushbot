@@ -5,10 +5,9 @@ import org.telegram.telegrambots.meta.TelegramBotsApi
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession
 import tg.TelegramDisPushBot
-import java.lang.Thread.sleep
 
 
-const val BOT_TOKEN: String = "NzkzNTY4NzExOTY0NDkxODQ3.X-uKdA.8Bok2J7Rb2JFNLXPJTtvUq4EX38"
+const val BOT_TOKEN: String = "NzkzNTY4NzExOTY0NDkxODQ3.X-uKdA.7ilshdxm0XOMcroz26YGtBohW60"
 lateinit var jda: JDA
 
 fun main() {
