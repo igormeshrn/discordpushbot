@@ -9,7 +9,7 @@ import org.telegram.abilitybots.api.objects.Privacy
 class TelegramDisPushBot(botToken: String?, botUsername: String?) : AbilityBot(botToken, botUsername) {
     constructor() : this("1443299748:AAE1Ss7eG0wLECiqQ5PjzBXVVT4Ph7vZk14", "pritonPushbot")
 
-    var userChatPairs = mutableListOf<Pair<Int,Long>>(Pair(153823291,153823291), Pair(276941508,276941508))
+    var usersMap = mutableMapOf<Long, String>(Pair(153823291,"andrewen"), Pair(276941508, "刀口仁口仁仈"))
     override fun creatorId() = 153823291
 
     fun replyToStart() = Ability
@@ -21,18 +21,31 @@ class TelegramDisPushBot(botToken: String?, botUsername: String?) : AbilityBot(b
     .action { ctx: MessageContext ->
         silent.send(
             "Теперь ты будешь получать надоедливые уведомления от меня" +
-                    "вскоре, ты и вовсе меня возненавидишь, а пока, наслаждайся",
+                    "вскоре, ты и вовсе меня возненавидишь, а пока, наслаждайся" +
+                    "Укажи свой ник в discord, с помощью команды '/nick твой_ник'",
+
             ctx.chatId()
         )
-        userChatPairs.add(Pair(ctx.user().id ,ctx.chatId()))
+        usersMap.put(ctx.chatId(), "")
     }.build()
 
+    fun replyToNick() = Ability
+            .builder()
+            .name("nick")
+            .info("nick")
+            .locality(Locality.ALL)
+            .privacy(Privacy.PUBLIC)
+            .action{ctx: MessageContext ->
+                val nick = ctx.update().message.text.split(" ").last()
+                usersMap.put(ctx.chatId(), nick)
 
-    fun sendMessage() {
-        userChatPairs.forEach {
-            silent.send("Кто-то вошел", it.second)
+                silent.send("я изменил твой ник", ctx.chatId())
+            }.build()
+
+    fun sendMessage(member: String, voiceChannel: String = "") {
+        usersMap.forEach {pair ->
+            if (member != pair.value)
+                silent.send("$member вошел в голосовой чат $voiceChannel", pair.key)
         }
     }
-
-
 }

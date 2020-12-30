@@ -22,7 +22,7 @@ class EntryListener(telegramBot: TelegramDisPushBot) : ListenerAdapter() {
 
         onJoinMessage.setDescription("$memberName зашел в хату")
         event.jda.textChannels[0].sendMessage(onJoinMessage.build()).submit()
-        tgBot.sendMessage()
+        tgBot.sendMessage(memberName, event.channelJoined.name)
     }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {

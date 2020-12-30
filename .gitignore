@@ -1,7 +1,7 @@
 # Default ignored files
 /build/
-/.idea/
 /.gradle/
+/.idea/
 *.log
 *.jar
 *.war
