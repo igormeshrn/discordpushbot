@@ -20,6 +20,11 @@ class EntryListener : ListenerAdapter() {
 
         onJoinMessage.setDescription("$memberName зашел в хату")
         event.jda.textChannels[0].sendMessage(onJoinMessage.build()).submit()
+
+        if (event.channelJoined.members.size == 1) {
+            event.jda.textChannels[0].sendMessage("-play https://www.youtube.com/watch?v=VBlFHuCzPgY&ab_channel=AntoineB")
+                .submit()
+        }
     }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
